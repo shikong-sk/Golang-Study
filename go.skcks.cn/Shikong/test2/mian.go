@@ -28,13 +28,19 @@ func main() {
 
 	fmt.Println("\n==============================================")
 
-	num := 10
-	fmt.Printf("二进制：%b\n",num)
+	num2 := 0b1010 // go 1.13 版本之后可定义二进制 0b1010
+	fmt.Printf("二进制：%b\n", num2)
 	num8 := 012
-	fmt.Printf("八进制：%o\n",num8)
-	fmt.Printf("十进制：%d\n",num)
+	fmt.Printf("八进制：%o\n", num8)
+	num := 10
+	fmt.Printf("十进制：%d\n", num)
 	num16 := 0xA
-	fmt.Printf("十六进制：%X\n",num16)
+	fmt.Printf("十六进制：%X\n", num16)
 
 	fmt.Println("\n==============================================")
+
+	var c64 complex64
+	fmt.Println("复数 complex64 实部和虚部为32位 => ", c64)
+	var c128 complex128
+	fmt.Println("复数 complex128 实部和虚部为64位 => ", c128)
 }
