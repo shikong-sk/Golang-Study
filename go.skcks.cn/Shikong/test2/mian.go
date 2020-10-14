@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"math"
+	"strings"
+	"unicode/utf8"
 )
 
 func main() {
@@ -64,9 +67,20 @@ func main() {
 	'\t' => 制表符
 	'\"' => 双引号 
 	'\\' => 反斜杠`
-	fmt.Println("字符串 string =>",str)
+	fmt.Println("字符串 string =>", str)
 
 	fmt.Printf("\n==============================================\n\n")
 
-	fmt.Println("强制类型转换 int -> float64 =>",math.Sqrt(float64(3*3 + 4*4)))
+	fmt.Println("强制类型转换 int -> float64 =>", math.Sqrt(float64(3*3+4*4)))
+
+	fmt.Printf("\n==============================================\n\n")
+
+	str1 := "123一二三"
+	fmt.Println(
+		"统计字符串长度的方法：("+str1+")",
+		"\n len => ", len(str1),
+		"\n bytes.Count => ", bytes.Count([]byte(str1), nil)-1,
+		"\n strings.Count => ", strings.Count(str1, "")-1,
+		"\n utf8.RuneCountInString => ", utf8.RuneCountInString(str1),
+	)
 }
