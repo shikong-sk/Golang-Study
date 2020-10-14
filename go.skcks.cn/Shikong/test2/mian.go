@@ -26,7 +26,7 @@ func main() {
 	var uIntPtr uintptr
 	fmt.Println("特殊类型 uintptr => 无符号整型, 用于存放一个指针", uIntPtr)
 
-	fmt.Println("\n==============================================")
+	fmt.Printf("\n==============================================\n\n")
 
 	num2 := 0b1010 // go 1.13 版本之后可定义二进制 0b1010
 	fmt.Printf("二进制：%b\n", num2)
@@ -37,10 +37,36 @@ func main() {
 	num16 := 0xA
 	fmt.Printf("十六进制：%X\n", num16)
 
-	fmt.Println("\n==============================================")
+	fmt.Printf("\n==============================================\n\n")
+
+	var f32 float32
+	fmt.Println("浮点型 32位 =>", f32, math.MaxFloat32)
+	var f64 float64
+	fmt.Println("浮点型 64位 =>", f64, math.MaxFloat64)
+
+	fmt.Printf("\n==============================================\n\n")
 
 	var c64 complex64
 	fmt.Println("复数 complex64 实部和虚部为32位 => ", c64)
 	var c128 complex128
 	fmt.Println("复数 complex128 实部和虚部为64位 => ", c128)
+
+	fmt.Printf("\n==============================================\n\n")
+
+	var b bool
+	fmt.Println("布尔型 只有 true 和 false (go 中不允许将整型强制转换为布尔型) => ", b)
+
+	var str string
+	// `...` 为多行字符串 在多行字符串中 转义字符无效 所有字符原样输出
+	str = `
+	'\r' => 回车符（返回行首)
+	'\n' => 换行符（直接跳到下一行的同列位置） 
+	'\t' => 制表符
+	'\"' => 双引号 
+	'\\' => 反斜杠`
+	fmt.Println("字符串 string =>",str)
+
+	fmt.Printf("\n==============================================\n\n")
+
+	fmt.Println("强制类型转换 int -> float64 =>",math.Sqrt(float64(3*3 + 4*4)))
 }
