@@ -1,3 +1,6 @@
+/**
+	变量类型
+ */
 package main
 
 import (
