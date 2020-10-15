@@ -44,9 +44,12 @@ func main() {
 		fmt.Println("key:", k, "value:", v)
 	}
 
+	fmt.Printf("\n==============================================\n\n")
+
+	// 生成随机数种子
+	rand.Seed(time.Now().UnixNano())
+	fmt.Println("随机数种子 =>",time.Now().UnixNano())
 	for i := 0; i < 10; i++ {
-		rand.Seed(time.Now().UnixNano())
 		fmt.Println(rand.Intn(10-1) + 1)
-		time.Sleep(time.Duration(1) * time.Nanosecond)
 	}
 }
