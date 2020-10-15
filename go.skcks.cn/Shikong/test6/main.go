@@ -46,8 +46,8 @@ func main() {
 	s4 := make([]int, 5)
 	s5 := s4
 	s5[0] = 666
-	fmt.Println("s4", s4)
-	fmt.Println("s5", s5)
+	fmt.Printf("s4 %v %p\n", s4, s4)
+	fmt.Printf("s5 %v %p\n", s5, s5)
 
 	fmt.Printf("\n==============================================\n\n")
 
@@ -74,7 +74,8 @@ func main() {
 	copy(d, b)
 	fmt.Println("修改通过 copy 赋值的切片不会修改到原来的切片")
 	d[0] = 666
-	fmt.Println(b, d)
+	fmt.Printf("b %v %p\n", b, b)
+	fmt.Printf("d %v %p\n", d, d)
 
 	fmt.Printf("\n==============================================\n\n")
 
