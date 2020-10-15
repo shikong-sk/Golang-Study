@@ -1,6 +1,6 @@
 /**
-	变量类型
- */
+变量类型
+*/
 package main
 
 import (
@@ -86,4 +86,16 @@ func main() {
 		"\n strings.Count => ", strings.Count(str1, "")-1,
 		"\n utf8.RuneCountInString => ", utf8.RuneCountInString(str1),
 	)
+	strArr := strings.Split(str1, "")
+	fmt.Println("分割字符串：\n", strArr)
+	fmt.Println("拼接字符串：\n", strings.Join(strArr, ""))
+	fmt.Println("字符串是否包含子串：\n", strings.Contains(str1, "6"))
+	fmt.Println("字符串是否包含前缀：\n", strings.HasPrefix(str1, "123"))
+	fmt.Println("字符串是否包含后缀：\n", strings.HasSuffix(str1, "一二三"))
+
+	fmt.Println("替换字符串：\n", strArr)
+	str2 := []rune(str1)
+	fmt.Println(str2[3:6], string(str2))
+	copy(str2[3:6], []rune("666"))
+	fmt.Println(str2, string(str2))
 }
