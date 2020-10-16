@@ -47,7 +47,6 @@ func forEachJson(jsonMap map[string]interface{}, opts ...forEachJsonOption) {
 		fmt.Printf(prefixBlank)
 		fmt.Printf(k)
 		valueType := reflect.TypeOf(v)
-		//fmt.Printf("\n%v\n", valueType)
 		valueIsMap := strings.EqualFold("map[string]interface {}", valueType.String())
 		valueIsArr := strings.EqualFold("[]interface {}", valueType.String())
 
@@ -59,12 +58,34 @@ func forEachJson(jsonMap map[string]interface{}, opts ...forEachJsonOption) {
 			for key, val := range v.([]interface{}) {
 				fmt.Printf(prefixBlank + "\t    \t\t\t")
 				fmt.Printf("%v \t => \t", key)
-				fmt.Printf("%v \n", val)
+				parseArray2Json(val,forEachJsonOption{deep+6})
 			}
 			fmt.Printf(prefixBlank + "\t    \t\t ]\n")
 
 		} else {
 			fmt.Printf("\t => \t %v\n", v)
 		}
+	}
+}
+
+func parseArray2Json(value interface{},opts ...forEachJsonOption){
+	var deep int
+	for _, v := range opts {
+		deep = v.deep
+	}
+	var prefixBlank string
+	for i := 0; i < deep; i++ {
+		prefixBlank += "\t"
+	}
+	valueType := reflect.TypeOf(value)
+	valueIsMap := strings.EqualFold("map[string]interface {}", valueType.String())
+	valueIsArr := strings.EqualFold("[]interface {}", valueType.String())
+	if valueIsMap {
+		fmt.Println()
+		forEachJson(value.(map[string]interface{}), forEachJsonOption{deep + 1})
+	} else if valueIsArr {
+		parseArray2Json(value.([]interface{}), forEachJsonOption{deep + 1})
+	} else {
+		fmt.Printf("%v\n", value)
 	}
 }
