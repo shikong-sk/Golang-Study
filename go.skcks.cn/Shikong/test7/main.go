@@ -1,3 +1,6 @@
+/**
+map 类型
+ */
 package main
 
 import "fmt"

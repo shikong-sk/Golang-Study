@@ -1,3 +1,6 @@
+/**
+函数
+ */
 package main
 
 import (
@@ -17,6 +20,17 @@ func main() {
 	testPanic()
 	fmt.Printf("\n==============================================\n\n")
 	fmt.Println(time.Now())
+	fmt.Printf("\n==============================================\n\n")
+	fmt.Printf("testReturn()\t => \t")
+	fmt.Println(testReturn())
+	fmt.Printf("testReturn2()\t => \t")
+	fmt.Println(testReturn2())
+	fmt.Printf("\n==============================================\n\n")
+	fmt.Println("函数变量")
+	f := func(){
+		fmt.Println("\t 函数变量 f()")
+	}
+	f()
 }
 
 func testDefer() {
@@ -45,4 +59,16 @@ func testPanic() {
 		}
 	}()
 	panic("test panic")
+}
+
+func testReturn()(int,int){
+	a := 1
+	b := 2
+	return a,b
+}
+
+func testReturn2()(a,b int){
+	a = 1
+	b = 2
+	return
 }
