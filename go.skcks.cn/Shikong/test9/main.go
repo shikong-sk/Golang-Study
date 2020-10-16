@@ -20,7 +20,24 @@ func main() {
 	fmt.Println("修改 指针 b 指向的地址的值")
 	*b = 777
 	fmt.Println("a =>", a, &a, "\n指针 b =>", b, &b, "\nc =>", c, &c)
+
 	fmt.Printf("\n==============================================\n\n")
 
+	fmt.Println("使用 new 函数 获取类型指针")
+	nInt := new(int)
+	fmt.Printf("%T \t %v \t %+v\n", nInt, nInt, *nInt)
+	nBool := new(bool)
+	fmt.Printf("%T \t %v \t %+v\n", nBool, nBool, *nBool)
+	nString := new(string)
+	fmt.Printf("%T \t %v \t %q\n", nString, nString, *nString)
 
+	fmt.Printf("\n==============================================\n\n")
+
+	fmt.Println("使用 make 函数 分配内存")
+
+	var m map[string]string
+	m = make(map[string]string, 10)
+	m["username"] = "ShiKong"
+	m["age"] = "20"
+	fmt.Println(m, len(m), &m)
 }
