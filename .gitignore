@@ -6,3 +6,4 @@
 pkg/mod/cache/lock
 .idea/Golang-Study.iml
 .idea/sqldialects.xml
+/.idea
