@@ -58,7 +58,7 @@ func forEachJson(jsonMap map[string]interface{}, opts ...forEachJsonOption) {
 			for key, val := range v.([]interface{}) {
 				fmt.Printf(prefixBlank + "\t    \t\t\t")
 				fmt.Printf("%v \t => \t", key)
-				parseArray2Json(val,forEachJsonOption{deep+6})
+				parseArray2Json(val, forEachJsonOption{deep + 6})
 			}
 			fmt.Printf(prefixBlank + "\t    \t\t ]\n")
 
@@ -68,7 +68,7 @@ func forEachJson(jsonMap map[string]interface{}, opts ...forEachJsonOption) {
 	}
 }
 
-func parseArray2Json(value interface{},opts ...forEachJsonOption){
+func parseArray2Json(value interface{}, opts ...forEachJsonOption) {
 	var deep int
 	for _, v := range opts {
 		deep = v.deep
