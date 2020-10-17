@@ -10,8 +10,9 @@ import (
 )
 
 func main() {
-
-	res, err := http.Get("http://httpbin.org/json")
+	//url := "http://httpbin.org/json"
+	url := "https://m.weibo.cn/api/config/list"
+	res, err := http.Get(url)
 	if err != nil {
 		fmt.Println(err)
 		recover()
@@ -27,14 +28,14 @@ func main() {
 
 	fmt.Println(jsonMap)
 	fmt.Printf("%T\n\n", jsonMap)
-	forEachJson(jsonMap)
+	printJson(jsonMap)
 }
 
-type forEachJsonOption struct {
+type printJsonOption struct {
 	deep int
 }
 
-func forEachJson(jsonMap map[string]interface{}, opts ...forEachJsonOption) {
+func printJson(jsonMap map[string]interface{}, opts ...printJsonOption) {
 	var deep int
 	for _, v := range opts {
 		deep = v.deep
@@ -52,13 +53,13 @@ func forEachJson(jsonMap map[string]interface{}, opts ...forEachJsonOption) {
 
 		if valueIsMap {
 			fmt.Println()
-			forEachJson(v.(map[string]interface{}), forEachJsonOption{deep + 1})
+			printJson(v.(map[string]interface{}), printJsonOption{deep + 1})
 		} else if valueIsArr {
 			fmt.Printf("\t => \t [\n")
 			for key, val := range v.([]interface{}) {
 				fmt.Printf(prefixBlank + "\t    \t\t\t")
 				fmt.Printf("%v \t => \t", key)
-				parseArray2Json(val, forEachJsonOption{deep + 6})
+				printJsonArray(val, printJsonOption{deep + 6})
 			}
 			fmt.Printf(prefixBlank + "\t    \t\t ]\n")
 
@@ -68,7 +69,7 @@ func forEachJson(jsonMap map[string]interface{}, opts ...forEachJsonOption) {
 	}
 }
 
-func parseArray2Json(value interface{}, opts ...forEachJsonOption) {
+func printJsonArray(value interface{}, opts ...printJsonOption) {
 	var deep int
 	for _, v := range opts {
 		deep = v.deep
@@ -82,9 +83,9 @@ func parseArray2Json(value interface{}, opts ...forEachJsonOption) {
 	valueIsArr := strings.EqualFold("[]interface {}", valueType.String())
 	if valueIsMap {
 		fmt.Println()
-		forEachJson(value.(map[string]interface{}), forEachJsonOption{deep + 1})
+		printJson(value.(map[string]interface{}), printJsonOption{deep + 1})
 	} else if valueIsArr {
-		parseArray2Json(value.([]interface{}), forEachJsonOption{deep + 1})
+		printJsonArray(value.([]interface{}), printJsonOption{deep + 1})
 	} else {
 		fmt.Printf("%v\n", value)
 	}
