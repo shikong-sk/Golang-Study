@@ -18,7 +18,6 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-
 	defer func() {
 		_ = socket.Close()
 	}()
