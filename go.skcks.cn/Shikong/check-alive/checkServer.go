@@ -52,10 +52,10 @@ func process(url string, timeout int32, result chan<- string, apiMap *sync.Map, 
 	if alive != store.(api).alive {
 		apiMap.Store(key, api{url, alive})
 		if alive {
-			result <- key + " 已上线" + time.Now().Format("2006-01-02 15:04:05.000") + "\n"
+			result <- key + " 已上线 \t" + time.Now().Format("2006-01-02 15:04:05.000") + "\n"
 			_ = notification.Notification(key+" 已上线", time.Now().Format("2006-01-02 15:04:05.000"))
 		} else {
-			result <- key + " 无法访问" + time.Now().Format("2006-01-02 15:04:05.000") + "\n"
+			result <- key + " 无法访问 \t" + time.Now().Format("2006-01-02 15:04:05.000") + "\n"
 			_ = notification.Notification(key+" 无法访问", time.Now().Format("2006-01-02 15:04:05.000"))
 		}
 	}
