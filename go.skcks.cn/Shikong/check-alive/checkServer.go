@@ -34,7 +34,7 @@ func main() {
 	for {
 		wg.Add(processNum)
 		apiMap.Range(func(k, v interface{}) bool {
-			go process(v.(api).address, 1, result, apiMap, k.(string))
+			go process(v.(api).address, 500, result, apiMap, k.(string))
 			return true
 		})
 		wg.Wait()

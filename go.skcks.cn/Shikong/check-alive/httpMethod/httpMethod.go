@@ -7,7 +7,7 @@ import (
 )
 
 func Get(url string,timeout int32) (string, error) {
-	client := &http.Client{Timeout: time.Duration(timeout) * time.Second}
+	client := &http.Client{Timeout: time.Duration(timeout) * time.Millisecond}
 	resp, err := client.Get(url)
 	if err != nil {
 		return "", err
